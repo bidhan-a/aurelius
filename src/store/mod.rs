@@ -3,6 +3,7 @@ use lazy_static::lazy_static;
 use serde::{Deserialize, Serialize};
 use std::{
     collections::HashMap,
+    fmt::{Display, Formatter},
     fs::{File, OpenOptions},
     io::{BufRead, BufReader, BufWriter, Write},
     path::Path,
@@ -125,5 +126,12 @@ impl State {
         }
 
         Ok(())
+    }
+}
+
+impl Display for State {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        // Just display the balances.
+        write!(f, "{:?}", self.balances)
     }
 }
